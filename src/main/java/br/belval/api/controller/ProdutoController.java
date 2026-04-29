@@ -17,12 +17,16 @@ public class ProdutoController {
 	
 	@Autowired
 	private ProdutoRepository repository;
-	
+	public ResponseEntity<Iterable<Produto>> obterProdutos() {
+		
+	}
 	
 	//curl POST http://localhost:8080/produtos -H "Content-Type: application/json; Charset=utf-8" -d @produto-pao.json
 	@PostMapping("/produtos")
 	public ResponseEntity<Produto> criarProduto(@RequestBody Produto produto) {
-		
+		return ResponseEntity.status(HttpStatus.OK)
+				.body(repository.findAll())
+				}
 		produto.setDataCriacao(LocalDateTime.now());
 		
 		System.out.println("Chegou : " + produto.toString());
